@@ -103,7 +103,7 @@ export default function CandidateForm() {
             <label className="block">LinkedIn URL</label>
             <input type="url" {...register("linkedin", { required: true })} className="border p-2 w-full mb-2" />
 
-            <label className="block">Upload Resume (PDF)</label>
+                <label className="block">Upload Resume (<strong>PDF Only</strong>)</label>
             <input type="file" accept="application/pdf" onChange={handleFileUpload} className="border p-2 w-full mb-2" />
 
             <textarea {...register("resumeText")} value={resumeText} readOnly className="border p-2 w-full h-24 mb-2" />

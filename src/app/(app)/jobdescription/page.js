@@ -46,8 +46,12 @@ export default function RecruiterDashboard() {
     return (
         <div className="max-w-3xl mx-auto p-6">
             <h1 className="text-2xl font-bold mb-4 text-center">Recruiter Dashboard</h1>
-
-            <div className="flex gap-2 mb-6">
+            <div className="mt-6 text-center">
+                <Button onClick={() => router.push("/")} variant="secondary">
+                    Back to Home
+                </Button>
+            </div>
+            <div className=" flex-col flex sm:flex-row gap-2 mb-6 mt-4">
                 <Input
                     type="text"
                     placeholder="Enter job description..."
@@ -55,7 +59,7 @@ export default function RecruiterDashboard() {
                     onChange={(e) => setJobDescription(e.target.value)}
                     className="flex-1"
                 />
-                <Button onClick={handleSearch} disabled={loading}>
+                <Button onClick={handleSearch} disabled={loading} className="w-fit mx-auto" >
                     {loading ? "Searching..." : "Find Candidates"}
                 </Button>
             </div>
@@ -100,12 +104,8 @@ export default function RecruiterDashboard() {
                 ))}
             </div>
 
-            {/* Back to Home Button */}
-            <div className="mt-6 text-center">
-                <Button onClick={() => router.push("/")} variant="secondary">
-                    Back to Home
-                </Button>
-            </div>
+            
+           
         </div>
     );
 }
