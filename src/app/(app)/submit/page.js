@@ -106,7 +106,7 @@ export default function CandidateForm() {
                 <label className="block">Upload Resume (<strong>PDF Only</strong>)</label>
             <input type="file" accept="application/pdf" onChange={handleFileUpload} className="border p-2 w-full mb-2" />
 
-            <textarea {...register("resumeText")} value={resumeText} readOnly className="border p-2 w-full h-24 mb-2" />
+                <textarea {...register("resumeText")} placeholder="You can type manually as well" value={resumeText} onChange={(e) => setResumeText(e.target.value)} className="border p-2 w-full h-24 mb-2" />
 
             <label className="block">Skills & Experience</label>
             <input placeholder="Type a skill and press Enter or comma" onKeyPress={handleKeyPress} type="text" className="border p-2 w-full mb-2" />
