@@ -13,15 +13,16 @@ export default function CandidateForm() {
     const [resumeText, setResumeText] = useState("");
     const [skills, setSkills] = useState([]);
     const [loading, setLoading] = useState(false);
-
+    const [loading2, setLoading2] = useState(false);
     useEffect(() => {
         setValue("resumeText", resumeText);
     }, [resumeText, setValue]);
 
     const handleFileUpload = async (event) => {
+        setResumeText("");
         const file = event.target.files[0];
         if (!file) return;
-
+        setLoading2(true);
         const formData = new FormData();
         formData.append("file", file);
 
@@ -30,6 +31,8 @@ export default function CandidateForm() {
             setResumeText(response.data.text);
         } catch (error) {
             console.error("Error parsing PDF:", error);
+        } finally {
+            setLoading2(false);
         }
     };
 
@@ -106,7 +109,7 @@ export default function CandidateForm() {
                 <label className="block">Upload Resume (<strong>PDF Only</strong>)</label>
             <input type="file" accept="application/pdf" onChange={handleFileUpload} className="border p-2 w-full mb-2" />
 
-                <textarea {...register("resumeText")} placeholder="You can type manually as well" value={resumeText} onChange={(e) => setResumeText(e.target.value)} className="border p-2 w-full h-24 mb-2" />
+                <textarea {...register("resumeText")} placeholder={loading2?("parsing..."):("You can type manually as well")} value={resumeText} onChange={(e) => setResumeText(e.target.value)} className="border p-2 w-full h-24 mb-2" />
 
             <label className="block">Skills & Experience</label>
             <input placeholder="Type a skill and press Enter or comma" onKeyPress={handleKeyPress} type="text" className="border p-2 w-full mb-2" />
